@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
+import Chatbot from "../src/pages/chatbot";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +62,7 @@ const App = () => {
             <Route path="/dashboard" element={user ? <Dashboard /> : <Auth />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
+            <Route path="/chatbot" element={<Chatbot />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
