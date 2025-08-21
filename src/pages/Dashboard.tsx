@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
+import Link from "next/link";
 import { 
   BookOpen, 
   Brain, 
@@ -83,6 +84,8 @@ export default function Dashboard() {
           </h1>
           <p className="text-muted-foreground">Welcome back! Ready to learn something new?</p>
         </div>
+          {/* <Link href="/motivation">Motivation</Link>
+            <Link href="/generator">Motivation</Link> */}
         <Button variant="ghost" onClick={handleSignOut}>
           <LogOut className="w-4 h-4 mr-2" />
           Sign Out

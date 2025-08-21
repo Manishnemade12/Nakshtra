@@ -10,7 +10,10 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
-
+import Generator from "./pages/generator";
+import Motivation from "./pages/motivation";
+import Chatbot from "./pages/chatbot";
+import Guidance from "./pages/Guidance";
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -59,6 +62,11 @@ const App = () => {
             <Route path="/" element={user ? <Dashboard /> : <Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={user ? <Dashboard /> : <Auth />} />
+            <Route path="/generator" element={user ? <Generator /> : <Auth />} />
+            <Route path="/Motivation" element={user ? <Motivation /> : <Auth />} />
+
+            <Route path="/Chatbot" element={user ? <Chatbot /> : <Auth />} />
+            <Route path="/Guidance" element={user ? <Guidance /> : <Auth />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
