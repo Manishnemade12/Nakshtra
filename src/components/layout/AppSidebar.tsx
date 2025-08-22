@@ -64,12 +64,7 @@ const navigationItems = [
     icon: Brain,
     gradient: "from-primary to-accent-teal"
   },
-    { 
-    title: "Summrizer & Flashcards", 
-    url: "/Summary", 
-    icon: MessageCircle,
-    gradient: "from-secondary-purple to-accent-teal"
-  },
+
 
   { 
     title: "TestGenerator", 
@@ -77,12 +72,20 @@ const navigationItems = [
     icon: HelpCircle,
     gradient: "from-secondary-purple to-accent-teal"
   },
-  { 
+      { 
+    title: "Summrizer & Flashcards", 
+    url: "/Summary", 
+    icon: MessageCircle,
+    gradient: "from-secondary-purple to-accent-teal"
+  },
+
+    { 
     title: "Contact Us", 
     url: "/contact", 
     icon: Zap,
     gradient: "from-accent-teal to-primary"
   },
+  
 ];
 
 export function AppSidebar() {

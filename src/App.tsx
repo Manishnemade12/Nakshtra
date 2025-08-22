@@ -50,16 +50,16 @@ const App = () => {
     return () => subscription.unsubscribe();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen hero-gradient flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <div className="w-16 h-16 mx-auto animate-spin rounded-full border-4 border-white/20 border-t-white"></div>
-          <p className="text-white text-lg">Loading StudyGine...</p>
-        </div>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen hero-gradient flex items-center justify-center">
+  //       <div className="text-center space-y-4">
+  //         <div className="w-16 h-16 mx-auto animate-spin rounded-full border-4 border-white/20 border-t-white"></div>
+  //         <p className="text-white text-lg">Loading StudyGine...</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -67,14 +67,14 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-         {/* <SidebarProvider>
+         <SidebarProvider>
             <div className="min-h-screen flex w-full neural-lines">
               <AppSidebar />
               <main className="flex-1 relative">
                 
                 <div className="absolute top-6 right-6 z-40">
-                  <ThemeToggle />
-                </div> */}
+                  {/* <ThemeToggle /> */}
+                </div>
           <Routes>
             <Route path="/" element={user ? <Dashboard1 /> : <Index />} />
             <Route path="/auth" element={<Auth />} />
@@ -92,9 +92,9 @@ const App = () => {
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-              {/* </main>
+              </main>
             </div>
-          </SidebarProvider> */}
+          </SidebarProvider>
 
         </BrowserRouter>
       </TooltipProvider>
