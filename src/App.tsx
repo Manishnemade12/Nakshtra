@@ -61,12 +61,12 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={user ? <Dashboard /> : <Index />} />
+            <Route path="/" element={user ? <Dashboard1 /> : <Index />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={user ? <Dashboard /> : <Auth />} />
+            <Route path="/dashboard" element={user ? <Dashboard /> : <Auth />} /> 
             <Route path="/generator" element={user ? <Generator /> : <Auth />} />
             <Route path="/Motivation" element={user ? <Motivation /> : <Auth />} />
-  <Route path="/*" element={<Dashboard1 />} />
+            <Route path="/*" element={<Dashboard1 />} />
             <Route path="/Chatbot" element={user ? <Chatbot /> : <Auth />} />
             <Route path="/Guidance" element={user ? <Guidance /> : <Auth />} />
             <Route path="/Roadmap" element={user ? <Roadmap /> : <Auth />} />

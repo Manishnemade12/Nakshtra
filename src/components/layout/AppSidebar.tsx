@@ -29,55 +29,55 @@ import {
 
 const navigationItems = [
   { 
-    title: "Dashboard", 
-    url: "/", 
+    title: "Peronalised Lerning", 
+    url: "/Roadmap", 
     icon: BarChart3,
     gradient: "from-primary to-secondary-purple"
   },
   { 
-    title: "Chat", 
+    title: "Global Chat", 
     url: "/chat", 
     icon: MessageCircle,
     gradient: "from-secondary-purple to-accent-teal"
   },
   { 
-    title: "Stats", 
-    url: "/stats", 
+    title: "AI POwered Insights", 
+    url: "/Guidance", 
     icon: TrendingUp,
     gradient: "from-accent-teal to-primary"
   },
   { 
-    title: "Games", 
-    url: "/games", 
+    title: "personalize study tips", 
+    url: "/Motivation", 
     icon: Gamepad2,
     gradient: "from-primary to-accent-teal"
   },
   { 
-    title: "Courses", 
-    url: "/courses", 
+    title: "AI Sumarizer", 
+    url: "/generator", 
     icon: BookOpen,
     gradient: "from-secondary-purple to-primary"
   },
+  // { 
+  //   title: "Face Detection", 
+  //   url: "/face-detection", 
+  //   icon: ScanFace,
+  //   gradient: "from-accent-teal to-secondary-purple"
+  // },
+  // { 
+  //   title: "Meditation", 
+  //   url: "/meditation", 
+  //   icon: Brain,
+  //   gradient: "from-primary to-accent-teal"
+  // },
   { 
-    title: "Face Detection", 
-    url: "/face-detection", 
-    icon: ScanFace,
-    gradient: "from-accent-teal to-secondary-purple"
-  },
-  { 
-    title: "Meditation", 
-    url: "/meditation", 
-    icon: Brain,
-    gradient: "from-primary to-accent-teal"
-  },
-  { 
-    title: "Quiz", 
+    title: "Quizes", 
     url: "/quiz", 
     icon: HelpCircle,
     gradient: "from-secondary-purple to-accent-teal"
   },
   { 
-    title: "Motivation", 
+    title: "Contact Us", 
     url: "/motivation", 
     icon: Zap,
     gradient: "from-accent-teal to-primary"
