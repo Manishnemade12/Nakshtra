@@ -80,7 +80,7 @@ export default function Dashboard1() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            StudyGine Dashboard
+            BrainBin Dashboard
           </h1>
           <p className="text-muted-foreground">Welcome back! Ready to learn something new?</p>
         </div>
@@ -173,7 +173,7 @@ export default function Dashboard1() {
           </CardContent>
         </Card>
 
-        <Card className="card-gradient hover-lift">
+        {/* <Card className="card-gradient hover-lift">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Users className="w-5 h-5 text-secondary" />
@@ -189,7 +189,7 @@ export default function Dashboard1() {
               Browse Rooms
             </Button>
           </CardContent>
-        </Card>
+        </Card> */}
 
         <Card className="card-gradient hover-lift">
           <CardHeader>

@@ -16,6 +16,13 @@ import Chatbot from "./pages/chatbot";
 import Guidance from "./pages/Guidance";
 import Roadmap from "./pages/Roadmap";
 import Dashboard1 from "./pages/Dashboard1";
+import Contact from "./pages/Contact";
+import { TestGenerator } from "./components/TestGenerator";
+import Summary from "./pages/Summary";
+import Forum from "./pages/Forum";
+import { SidebarProvider } from "./components/ui/sidebar";
+import { AppSidebar } from "./components/layout/AppSidebar";
+import { ThemeToggle } from "./components/layout/ThemeToggle";
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -60,6 +67,14 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+         {/* <SidebarProvider>
+            <div className="min-h-screen flex w-full neural-lines">
+              <AppSidebar />
+              <main className="flex-1 relative">
+                
+                <div className="absolute top-6 right-6 z-40">
+                  <ThemeToggle />
+                </div> */}
           <Routes>
             <Route path="/" element={user ? <Dashboard1 /> : <Index />} />
             <Route path="/auth" element={<Auth />} />
@@ -70,9 +85,17 @@ const App = () => {
             <Route path="/Chatbot" element={user ? <Chatbot /> : <Auth />} />
             <Route path="/Guidance" element={user ? <Guidance /> : <Auth />} />
             <Route path="/Roadmap" element={user ? <Roadmap /> : <Auth />} />
+            <Route path="/Summary" element={user ? <Summary /> : <Auth />} />
+            <Route path="/Contact" element={user ? <Contact /> : <Auth />} />
+            <Route path="/TestGenerator" element={user ? <TestGenerator /> : <Auth />} />
+            <Route path="/Forum" element={user ? <Forum /> : <Auth />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+              {/* </main>
+            </div>
+          </SidebarProvider> */}
+
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>

@@ -185,7 +185,7 @@ import { v4 as uuidv4 } from "uuid";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // Gemini API setup (move key to .env in production)
-const genAI = new GoogleGenerativeAI("AIzaSyAlH6fGlkav2uGJckN3diEO1HGAhzztYME");
+const genAI = new GoogleGenerativeAI("AIzaSyD790PLGmXLF7QmMbH1GYvBfwbPRfdnmFM");
 
 interface Message {
   id: string;

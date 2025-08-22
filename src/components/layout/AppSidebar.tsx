@@ -29,16 +29,10 @@ import {
 
 const navigationItems = [
   { 
-    title: "Peronalised Lerning", 
+    title: "Peronalised Learning", 
     url: "/Roadmap", 
     icon: BarChart3,
     gradient: "from-primary to-secondary-purple"
-  },
-  { 
-    title: "Global Chat", 
-    url: "/chat", 
-    icon: MessageCircle,
-    gradient: "from-secondary-purple to-accent-teal"
   },
   { 
     title: "AI POwered Insights", 
@@ -52,33 +46,40 @@ const navigationItems = [
     icon: Gamepad2,
     gradient: "from-primary to-accent-teal"
   },
-  { 
-    title: "AI Sumarizer", 
-    url: "/generator", 
-    icon: BookOpen,
-    gradient: "from-secondary-purple to-primary"
-  },
+  // { 
+  //   title: "AI Sumarizer", 
+  //   url: "/generator", 
+  //   icon: BookOpen,
+  //   gradient: "from-secondary-purple to-primary"
+  // },
   // { 
   //   title: "Face Detection", 
   //   url: "/face-detection", 
   //   icon: ScanFace,
   //   gradient: "from-accent-teal to-secondary-purple"
   // },
-  // { 
-  //   title: "Meditation", 
-  //   url: "/meditation", 
-  //   icon: Brain,
-  //   gradient: "from-primary to-accent-teal"
-  // },
   { 
-    title: "Quizes", 
-    url: "/quiz", 
+    title: "Community Forum", 
+    url: "/Forum", 
+    icon: Brain,
+    gradient: "from-primary to-accent-teal"
+  },
+    { 
+    title: "Summrizer & Flashcards", 
+    url: "/Summary", 
+    icon: MessageCircle,
+    gradient: "from-secondary-purple to-accent-teal"
+  },
+
+  { 
+    title: "TestGenerator", 
+    url: "/TestGenerator", 
     icon: HelpCircle,
     gradient: "from-secondary-purple to-accent-teal"
   },
   { 
     title: "Contact Us", 
-    url: "/motivation", 
+    url: "/contact", 
     icon: Zap,
     gradient: "from-accent-teal to-primary"
   },
@@ -130,7 +131,7 @@ export function AppSidebar() {
                   </div>
                   <div>
                     <h1 className="text-lg font-bold font-poppins bg-gradient-to-r from-primary to-secondary-purple bg-clip-text text-transparent">
-                      GenaStudy
+                     BrainBin
                     </h1>
                     <p className="text-xs text-muted-foreground">AI Learning Hub</p>
                   </div>
