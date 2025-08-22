@@ -98,7 +98,7 @@ const Dashboard = () => (
             <main className="flex-1 relative">
               {/* Theme Toggle */}
               <div className="absolute top-6 right-6 z-40">
-                <ThemeToggle />
+              
               </div>
               
               <Routes>

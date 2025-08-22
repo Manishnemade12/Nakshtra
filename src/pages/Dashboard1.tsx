@@ -229,7 +229,7 @@
 //               </div>
 //               <Badge variant="secondary">+50 XP</Badge>
 //             </div>
-            
+
 //             <div className="flex items-center justify-between p-4 rounded-lg bg-success/5 border border-success/20">
 //               <div className="flex items-center gap-3">
 //                 <div className="w-8 h-8 rounded-full bg-success/20 flex items-center justify-center">
@@ -242,7 +242,7 @@
 //               </div>
 //               <Badge variant="secondary">Streak Master</Badge>
 //             </div>
-            
+
 //             <div className="flex items-center justify-between p-4 rounded-lg bg-accent/5 border border-accent/20">
 //               <div className="flex items-center gap-3">
 //                 <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center">
@@ -267,12 +267,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { 
-  BookOpen, 
-  Brain, 
-  Target, 
-  Trophy, 
-  Users, 
+import { supabase } from '@/integrations/supabase/client';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
+import {
+  BookOpen,
+  Brain,
+  Target,
+  Trophy,
+  Users,
   Calendar,
   Upload,
   Zap,
@@ -367,14 +370,26 @@ const recentActivities = [
   }
 ];
 
+
+
 export default function Dashboard1() {
   const progressToNextLevel = ((userProgress.experience_points % 1000) / 10);
   const aiEfficiency = Math.round((userProgress.ai_interactions / userProgress.total_study_hours) * 10) / 10;
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    toast({
+      title: "Signed out successfully",
+      description: "You've been logged out.",
+    });
+    navigate('/auth');
+  };
   return (
     <div className="min-h-screen bg-background neural-bg">
       <div className="container mx-auto p-6 space-y-8">
-        
+
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="space-y-2">
@@ -386,7 +401,7 @@ export default function Dashboard1() {
               Powered by Generative AI • Ready to unlock new knowledge?
             </p>
           </div>
-          <Button variant="ghost" className="hover:bg-destructive/20">
+          <Button variant="ghost" className="hover:bg-destructive/20" onClick={handleSignOut}>
             <LogOut className="w-4 h-4 mr-2" />
             Sign Out
           </Button>
@@ -475,7 +490,7 @@ export default function Dashboard1() {
 
         {/* Charts Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          
+
           {/* Weekly Progress Chart */}
           <Card className="card-neural">
             <CardHeader>
@@ -489,26 +504,26 @@ export default function Dashboard1() {
                 <AreaChart data={weeklyData}>
                   <defs>
                     <linearGradient id="colorXp" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.1}/>
+                      <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.8} />
+                      <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0.1} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                   <XAxis dataKey="day" stroke="#9CA3AF" />
                   <YAxis stroke="#9CA3AF" />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1F2937', 
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: '#1F2937',
                       border: '1px solid #374151',
                       borderRadius: '8px'
                     }}
                   />
-                  <Area 
-                    type="monotone" 
-                    dataKey="xp" 
-                    stroke="#8B5CF6" 
-                    fillOpacity={1} 
-                    fill="url(#colorXp)" 
+                  <Area
+                    type="monotone"
+                    dataKey="xp"
+                    stroke="#8B5CF6"
+                    fillOpacity={1}
+                    fill="url(#colorXp)"
                     strokeWidth={3}
                   />
                 </AreaChart>
@@ -533,7 +548,7 @@ export default function Dashboard1() {
                     cy="50%"
                     outerRadius={100}
                     dataKey="value"
-                    label={({name, value}) => `${name}: ${value}%`}
+                    label={({ name, value }) => `${name}: ${value}%`}
                   >
                     {aiInsights.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
@@ -564,7 +579,7 @@ export default function Dashboard1() {
                     <span className="text-sm text-muted-foreground">{subject.progress}%</span>
                   </div>
                   <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
-                    <div 
+                    <div
                       className="h-full transition-all duration-1000 ease-out rounded-full"
                       style={{
                         width: `${subject.progress}%`,
@@ -648,8 +663,8 @@ export default function Dashboard1() {
               {recentActivities.map((activity) => {
                 const IconComponent = activity.icon;
                 return (
-                  <div 
-                    key={activity.id} 
+                  <div
+                    key={activity.id}
                     className="flex items-center justify-between p-4 rounded-lg border border-white/10 bg-gradient-to-r from-card/50 to-transparent hover-lift"
                   >
                     <div className="flex items-center gap-4">

@@ -6,12 +6,12 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Calendar, 
-  Target, 
-  Plus, 
-  CheckCircle, 
-  Clock, 
+import {
+  Calendar,
+  Target,
+  Plus,
+  CheckCircle,
+  Clock,
   Brain,
   Trash2,
   Edit
@@ -109,8 +109,8 @@ export function StudyPlanner() {
   };
 
   const updateProgress = (goalId: string, hoursToAdd: number) => {
-    setGoals(goals.map(goal => 
-      goal.id === goalId 
+    setGoals(goals.map(goal =>
+      goal.id === goalId
         ? { ...goal, completedHours: Math.min(goal.completedHours + hoursToAdd, goal.targetHours) }
         : goal
     ));
@@ -175,7 +175,7 @@ export function StudyPlanner() {
                     id="subject"
                     placeholder="e.g., Mathematics, Physics..."
                     value={newGoal.subject}
-                    onChange={(e) => setNewGoal({...newGoal, subject: e.target.value})}
+                    onChange={(e) => setNewGoal({ ...newGoal, subject: e.target.value })}
                   />
                 </div>
 
@@ -185,7 +185,7 @@ export function StudyPlanner() {
                     id="goal"
                     placeholder="e.g., Master calculus fundamentals..."
                     value={newGoal.goal}
-                    onChange={(e) => setNewGoal({...newGoal, goal: e.target.value})}
+                    onChange={(e) => setNewGoal({ ...newGoal, goal: e.target.value })}
                     rows={3}
                   />
                 </div>
@@ -197,11 +197,11 @@ export function StudyPlanner() {
                     type="number"
                     min="1"
                     value={newGoal.targetHours}
-                    onChange={(e) => setNewGoal({...newGoal, targetHours: parseInt(e.target.value) || 10})}
+                    onChange={(e) => setNewGoal({ ...newGoal, targetHours: parseInt(e.target.value) || 10 })}
                   />
                 </div>
 
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <Label htmlFor="deadline">Deadline *</Label>
                   <Input
                     id="deadline"
@@ -209,6 +209,26 @@ export function StudyPlanner() {
                     value={newGoal.deadline}
                     onChange={(e) => setNewGoal({...newGoal, deadline: e.target.value})}
                   />
+                </div> */}
+                <div className="relative">
+                  <input
+                    id="deadline"
+                    type="date"
+                    value={newGoal.deadline}
+                    onChange={(e) =>
+                      setNewGoal({ ...newGoal, deadline: e.target.value })
+                    }
+                    className="w-full bg-black text-white border border-gray-300 rounded-md px-3 py-2 pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() =>
+                      document.getElementById("deadline").showPicker?.()
+                    }
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-white"
+                  >
+                    📅
+                  </button>
                 </div>
 
                 <div className="space-y-2">
@@ -216,7 +236,7 @@ export function StudyPlanner() {
                   <select
                     className="w-full p-2 border rounded-md bg-background"
                     value={newGoal.priority}
-                    onChange={(e) => setNewGoal({...newGoal, priority: e.target.value as any})}
+                    onChange={(e) => setNewGoal({ ...newGoal, priority: e.target.value as any })}
                   >
                     <option value="low">Low Priority</option>
                     <option value="medium">Medium Priority</option>
@@ -224,7 +244,7 @@ export function StudyPlanner() {
                   </select>
                 </div>
 
-                <Button 
+                <Button
                   onClick={addGoal}
                   disabled={planLoading}
                   className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300"
@@ -279,7 +299,7 @@ export function StudyPlanner() {
                         </div>
                       </div>
                     </CardHeader>
-                    
+
                     <CardContent>
                       <div className="space-y-4">
                         {/* Progress */}
@@ -290,8 +310,8 @@ export function StudyPlanner() {
                               {goal.completedHours}/{goal.targetHours} hours
                             </span>
                           </div>
-                          <Progress 
-                            value={getProgressPercentage(goal)} 
+                          <Progress
+                            value={getProgressPercentage(goal)}
                             className="h-3"
                           />
                         </div>
