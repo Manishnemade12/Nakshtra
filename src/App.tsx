@@ -14,6 +14,8 @@ import Generator from "./pages/generator";
 import Motivation from "./pages/motivation";
 import Chatbot from "./pages/chatbot";
 import Guidance from "./pages/Guidance";
+import Roadmap from "./pages/Roadmap";
+import Dashboard1 from "./pages/Dashboard1";
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -64,9 +66,10 @@ const App = () => {
             <Route path="/dashboard" element={user ? <Dashboard /> : <Auth />} />
             <Route path="/generator" element={user ? <Generator /> : <Auth />} />
             <Route path="/Motivation" element={user ? <Motivation /> : <Auth />} />
-
+  <Route path="/*" element={<Dashboard1 />} />
             <Route path="/Chatbot" element={user ? <Chatbot /> : <Auth />} />
             <Route path="/Guidance" element={user ? <Guidance /> : <Auth />} />
+            <Route path="/Roadmap" element={user ? <Roadmap /> : <Auth />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
