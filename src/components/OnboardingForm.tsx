@@ -82,17 +82,11 @@
 //   description: string;
 // }
 
-// interface RoadmapStep {
-//   title: string;
-//   description: string;
-//   resources: StudyResource[];
-// }
-
 // interface PersonalizedPlan {
 //   welcomeMessage: string;
 //   resources: StudyResource[];
 //   studyTips: string[];
-//   roadmap: RoadmapStep[];
+//   weeklyPlan: string[];
 // }
 
 // interface OnboardingFormProps {
@@ -100,7 +94,7 @@
 // }
 
 // // Gemini API integration
-// const GEMINI_API_KEY = 'AIzaSyD_-0ZJZs4vl7lu36swnezS9r4CrJvDKiw';
+// const GEMINI_API_KEY = 'AIzaSyDR6kzuVXzuqC4h0NOupigXPoprJjPo7KE';
 // const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 // async function generatePersonalizedPlan(data: OnboardingData): Promise<PersonalizedPlan> {
@@ -131,19 +125,10 @@
 //     "Personalized study tip based on their profile",
 //     "Another tip specific to their subject and goals"
 //   ],
-//   "roadmap": [
-//     {
-//       "title": "Step 1: Foundation Topics",
-//       "description": "Start with basic concepts and fundamentals",
-//       "resources": [
-//         {
-//           "title": "Resource title",
-//           "url": "https://example.com",
-//           "type": "article" | "video" | "resource",
-//           "description": "Brief description"
-//         }
-//       ]
-//     }
+//   "weeklyPlan": [
+//     "Monday: Specific study activity",
+//     "Tuesday: Another activity",
+//     "etc..."
 //   ]
 // }
 
@@ -152,9 +137,8 @@
 // 2. Make resources highly relevant to their subject and goals
 // 3. Provide real, actionable URLs when possible (use actual educational websites)
 // 4. Create 5-7 personalized study tips based on their confidence level and time availability
-// 5. Generate a step-by-step roadmap (5-8 steps) with specific resources for each step
-// 6. Each roadmap step should have 3-5 relevant resources (mix of videos, articles, other resources)
-// 7. Make the tone encouraging and supportive
+// 5. Generate a weekly study plan that fits their available hours and preferred time
+// 6. Make the tone encouraging and supportive
 
 // Focus on ${data.subject} and specifically address their goals: "${data.goals}"
 
@@ -455,59 +439,56 @@
 //         </CardContent>
 //       </Card>
 
-//       {/* Learning Roadmap with references per step */}
+//       {/* Weekly Plan with references per step */}
 //       <Card className="shadow-soft">
 //         <CardHeader>
-//           <CardTitle>🚀 Your Learning Roadmap</CardTitle>
-//           <CardDescription>Step-by-step path with curated references for each stage</CardDescription>
+//           <CardTitle>📅 Your Weekly Study Plan</CardTitle>
+//           <CardDescription>Expand each day to access tailored references</CardDescription>
 //         </CardHeader>
 //         <CardContent>
 //           <Accordion type="single" collapsible className="w-full">
-//             {plan.roadmap.map((step, index) => (
-//               <AccordionItem key={index} value={`step-${index}`}>
+//             {plan.weeklyPlan.map((day, index) => (
+//               <AccordionItem key={index} value={`day-${index}`}>
 //                 <AccordionTrigger className="text-left">
-//                   <div className="w-full flex items-start justify-between">
-//                     <div>
-//                       <div className="font-medium">{step.title}</div>
-//                       <div className="text-sm text-muted-foreground mt-1">{step.description}</div>
-//                     </div>
+//                   <div className="w-full flex items-center justify-between">
+//                     <span className="font-medium">{day}</span>
 //                   </div>
 //                 </AccordionTrigger>
 //                 <AccordionContent>
-//                   <Tabs defaultValue="all" className="w-full">
+//                   <Tabs defaultValue="video" className="w-full">
 //                     <TabsList className="grid w-full grid-cols-4">
-//                       <TabsTrigger value="all">All</TabsTrigger>
 //                       <TabsTrigger value="video">Videos</TabsTrigger>
 //                       <TabsTrigger value="article">Articles</TabsTrigger>
 //                       <TabsTrigger value="resource">Resources</TabsTrigger>
+//                       <TabsTrigger value="all">All</TabsTrigger>
 //                     </TabsList>
 //                     <div className="pt-4">
-//                       <TabsContent value="all">
-//                         {step.resources?.length ? (
-//                           <ResourceList items={step.resources} />
-//                         ) : (
-//                           <p className="text-sm text-muted-foreground">No references found for this step.</p>
-//                         )}
-//                       </TabsContent>
 //                       <TabsContent value="video">
-//                         {step.resources?.filter(r => r.type === 'video').length ? (
-//                           <ResourceList items={step.resources.filter(r => r.type === 'video')} />
+//                         {byType('video').length ? (
+//                           <ResourceList items={byType('video')} />
 //                         ) : (
-//                           <p className="text-sm text-muted-foreground">No videos found for this step.</p>
+//                           <p className="text-sm text-muted-foreground">No videos found.</p>
 //                         )}
 //                       </TabsContent>
 //                       <TabsContent value="article">
-//                         {step.resources?.filter(r => r.type === 'article').length ? (
-//                           <ResourceList items={step.resources.filter(r => r.type === 'article')} />
+//                         {byType('article').length ? (
+//                           <ResourceList items={byType('article')} />
 //                         ) : (
-//                           <p className="text-sm text-muted-foreground">No articles found for this step.</p>
+//                           <p className="text-sm text-muted-foreground">No articles found.</p>
 //                         )}
 //                       </TabsContent>
 //                       <TabsContent value="resource">
-//                         {step.resources?.filter(r => r.type === 'resource').length ? (
-//                           <ResourceList items={step.resources.filter(r => r.type === 'resource')} />
+//                         {byType('resource').length ? (
+//                           <ResourceList items={byType('resource')} />
 //                         ) : (
-//                           <p className="text-sm text-muted-foreground">No resources found for this step.</p>
+//                           <p className="text-sm text-muted-foreground">No resources found.</p>
+//                         )}
+//                       </TabsContent>
+//                       <TabsContent value="all">
+//                         {byType().length ? (
+//                           <ResourceList items={byType()} />
+//                         ) : (
+//                           <p className="text-sm text-muted-foreground">No references found.</p>
 //                         )}
 //                       </TabsContent>
 //                     </div>
@@ -932,17 +913,11 @@ interface StudyResource {
   description: string;
 }
 
-interface RoadmapStep {
-  title: string;
-  description: string;
-  resources: StudyResource[];
-}
-
 interface PersonalizedPlan {
   welcomeMessage: string;
   resources: StudyResource[];
   studyTips: string[];
-  roadmap: RoadmapStep[];
+  weeklyPlan: string[];
 }
 
 interface OnboardingFormProps {
@@ -950,7 +925,7 @@ interface OnboardingFormProps {
 }
 
 // Gemini API integration
-const GEMINI_API_KEY = 'AIzaSyD_-0ZJZs4vl7lu36swnezS9r4CrJvDKiw';
+const GEMINI_API_KEY = 'AIzaSyDR6kzuVXzuqC4h0NOupigXPoprJjPo7KE';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 
 async function generatePersonalizedPlan(data: OnboardingData): Promise<PersonalizedPlan> {
@@ -981,19 +956,10 @@ Please respond with a JSON object containing:
     "Personalized study tip based on their profile",
     "Another tip specific to their subject and goals"
   ],
-  "roadmap": [
-    {
-      "title": "Step 1: Foundation Topics",
-      "description": "Start with basic concepts and fundamentals",
-      "resources": [
-        {
-          "title": "Resource title",
-          "url": "https://example.com",
-          "type": "article" | "video" | "resource",
-          "description": "Brief description"
-        }
-      ]
-    }
+  "weeklyPlan": [
+    "Monday: Specific study activity",
+    "Tuesday: Another activity",
+    "etc..."
   ]
 }
 
@@ -1002,9 +968,8 @@ Requirements:
 2. Make resources highly relevant to their subject and goals
 3. Provide real, actionable URLs when possible (use actual educational websites)
 4. Create 5-7 personalized study tips based on their confidence level and time availability
-5. Generate a step-by-step roadmap (5-8 steps) with specific resources for each step
-6. Each roadmap step should have 3-5 relevant resources (mix of videos, articles, other resources)
-7. Make the tone encouraging and supportive
+5. Generate a weekly study plan that fits their available hours and preferred time
+6. Make the tone encouraging and supportive
 
 Focus on ${data.subject} and specifically address their goals: "${data.goals}"
 
@@ -1305,59 +1270,56 @@ const StudyPlanDisplay: React.FC<{ plan: PersonalizedPlan }> = ({ plan }) => {
         </CardContent>
       </Card>
 
-      {/* Learning Roadmap with references per step */}
+      {/* Weekly Plan with references per step */}
       <Card className="shadow-soft">
         <CardHeader>
-          <CardTitle>🚀 Your Learning Roadmap</CardTitle>
-          <CardDescription>Step-by-step path with curated references for each stage</CardDescription>
+          <CardTitle>📅 Your Weekly Study Plan</CardTitle>
+          <CardDescription>Expand each day to access tailored references</CardDescription>
         </CardHeader>
         <CardContent>
           <Accordion type="single" collapsible className="w-full">
-            {plan.roadmap.map((step, index) => (
-              <AccordionItem key={index} value={`step-${index}`}>
+            {plan.weeklyPlan.map((day, index) => (
+              <AccordionItem key={index} value={`day-${index}`}>
                 <AccordionTrigger className="text-left">
-                  <div className="w-full flex items-start justify-between">
-                    <div>
-                      <div className="font-medium">{step.title}</div>
-                      <div className="text-sm text-muted-foreground mt-1">{step.description}</div>
-                    </div>
+                  <div className="w-full flex items-center justify-between">
+                    <span className="font-medium">{day}</span>
                   </div>
                 </AccordionTrigger>
                 <AccordionContent>
-                  <Tabs defaultValue="all" className="w-full">
+                  <Tabs defaultValue="video" className="w-full">
                     <TabsList className="grid w-full grid-cols-4">
-                      <TabsTrigger value="all">All</TabsTrigger>
                       <TabsTrigger value="video">Videos</TabsTrigger>
                       <TabsTrigger value="article">Articles</TabsTrigger>
                       <TabsTrigger value="resource">Resources</TabsTrigger>
+                      <TabsTrigger value="all">All</TabsTrigger>
                     </TabsList>
                     <div className="pt-4">
-                      <TabsContent value="all">
-                        {step.resources?.length ? (
-                          <ResourceList items={step.resources} />
-                        ) : (
-                          <p className="text-sm text-muted-foreground">No references found for this step.</p>
-                        )}
-                      </TabsContent>
                       <TabsContent value="video">
-                        {step.resources?.filter(r => r.type === 'video').length ? (
-                          <ResourceList items={step.resources.filter(r => r.type === 'video')} />
+                        {byType('video').length ? (
+                          <ResourceList items={byType('video')} />
                         ) : (
-                          <p className="text-sm text-muted-foreground">No videos found for this step.</p>
+                          <p className="text-sm text-muted-foreground">No videos found.</p>
                         )}
                       </TabsContent>
                       <TabsContent value="article">
-                        {step.resources?.filter(r => r.type === 'article').length ? (
-                          <ResourceList items={step.resources.filter(r => r.type === 'article')} />
+                        {byType('article').length ? (
+                          <ResourceList items={byType('article')} />
                         ) : (
-                          <p className="text-sm text-muted-foreground">No articles found for this step.</p>
+                          <p className="text-sm text-muted-foreground">No articles found.</p>
                         )}
                       </TabsContent>
                       <TabsContent value="resource">
-                        {step.resources?.filter(r => r.type === 'resource').length ? (
-                          <ResourceList items={step.resources.filter(r => r.type === 'resource')} />
+                        {byType('resource').length ? (
+                          <ResourceList items={byType('resource')} />
                         ) : (
-                          <p className="text-sm text-muted-foreground">No resources found for this step.</p>
+                          <p className="text-sm text-muted-foreground">No resources found.</p>
+                        )}
+                      </TabsContent>
+                      <TabsContent value="all">
+                        {byType().length ? (
+                          <ResourceList items={byType()} />
+                        ) : (
+                          <p className="text-sm text-muted-foreground">No references found.</p>
                         )}
                       </TabsContent>
                     </div>

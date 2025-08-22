@@ -21,7 +21,63 @@
   </head>
 
   <body>
+    <!-- Google Translate Dropdown -->
+    <style>
+      #google_translate_element {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 9999;
+        background: rgba(255,255,255,0.85);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        padding: 2px 8px 2px 4px;
+        min-width: 0;
+        transition: box-shadow 0.2s;
+      }
+      #google_translate_element:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      }
+      .goog-te-gadget {
+        font-size: 13px !important;
+        font-family: 'Inter', Arial, sans-serif !important;
+      }
+      .goog-te-combo {
+        font-size: 13px !important;
+        border-radius: 4px;
+        padding: 2px 8px;
+        border: 1px solid #e0e0e0;
+        background: #f8fafc;
+        color: #222;
+        margin-left: 2px;
+        margin-right: 2px;
+        outline: none;
+        transition: border 0.2s;
+      }
+      .goog-te-combo:focus {
+        border: 1.5px solid #6366f1;
+      }
+      .goog-logo-link, .goog-te-gadget span {
+        display: none !important;
+      }
+      .goog-te-banner-frame.skiptranslate { display: none !important; }
+      body { top: 0px !important; }
+    </style>
+    <div id="google_translate_element"></div>
+    <div style="height:32px;"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Google Translate Widget Script -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,mr',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   </body>
 </html>
