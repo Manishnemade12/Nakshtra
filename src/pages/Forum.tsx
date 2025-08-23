@@ -4,7 +4,7 @@ const Forum = () => {
   return (
     <div style={{ height: "100vh", width: "100vw", margin: 0, padding: 0, overflow: "hidden" }}>
       <iframe
-        src="https://uni-chatter-wall.vercel.app/"
+        src="https://nakshtra2.vercel.app/"
         title="Forum"
         style={{
           border: "none",
