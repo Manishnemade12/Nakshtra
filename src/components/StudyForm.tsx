@@ -112,34 +112,49 @@ const StudyForm = ({ onSubmit, isLoading }: StudyFormProps) => {
   const [branch, setBranch] = useState("");
   const [field, setField] = useState("");
   const [isRecording, setIsRecording] = useState(false);
+  const [isBranchRecording, setIsBranchRecording] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const branchRecognitionRef = useRef<SpeechRecognition | null>(null);
 
-  // Initialize Speech Recognition
+  // Initialize Speech Recognition for textarea (field)
   useEffect(() => {
-    if (!("webkitSpeechRecognition" in window || "SpeechRecognition" in window)) {
-      console.warn("Browser does not support Speech Recognition");
+    if (!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+      console.warn('Browser does not support Speech Recognition');
       return;
     }
-
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    // For textarea
     const recognition = new SpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
-    recognition.lang = "en-US";
-
+    recognition.lang = 'en-US';
     recognition.onresult = (event: SpeechRecognitionEvent) => {
-      let transcript = "";
+      let transcript = '';
       for (let i = event.resultIndex; i < event.results.length; i++) {
         transcript += event.results[i][0].transcript;
       }
-      setField(transcript);
+      setField(prev => prev + transcript);
     };
-
     recognition.onend = () => {
       setIsRecording(false);
     };
-
     recognitionRef.current = recognition;
+    // For branch input
+    const branchRecognition = new SpeechRecognition();
+    branchRecognition.continuous = true;
+    branchRecognition.interimResults = true;
+    branchRecognition.lang = 'en-US';
+    branchRecognition.onresult = (event: SpeechRecognitionEvent) => {
+      let transcript = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+      }
+      setBranch(prev => prev + transcript);
+    };
+    branchRecognition.onend = () => {
+      setIsBranchRecording(false);
+    };
+    branchRecognitionRef.current = branchRecognition;
   }, []);
 
   const toggleRecording = () => {
@@ -148,6 +163,15 @@ const StudyForm = ({ onSubmit, isLoading }: StudyFormProps) => {
     } else {
       recognitionRef.current?.start();
       setIsRecording(true);
+    }
+  };
+
+  const toggleBranchRecording = () => {
+    if (isBranchRecording) {
+      branchRecognitionRef.current?.stop();
+    } else {
+      branchRecognitionRef.current?.start();
+      setIsBranchRecording(true);
     }
   };
 
@@ -174,7 +198,7 @@ const StudyForm = ({ onSubmit, isLoading }: StudyFormProps) => {
 
       <CardContent className="space-y-6">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
+          <div className="space-y-2 relative">
             <Label htmlFor="branch" className="text-sm font-medium flex items-center space-x-2">
               <TrendingUp className="h-4 w-4 text-academic-blue" />
               <span>Branch of Study</span>
@@ -185,9 +209,18 @@ const StudyForm = ({ onSubmit, isLoading }: StudyFormProps) => {
               placeholder="e.g., Computer Science, Medicine, Engineering..."
               value={branch}
               onChange={(e) => setBranch(e.target.value)}
-              className="bg-background/50 border-academic-blue/30 focus:border-academic-purple focus:ring-academic-purple/30"
+              className="bg-background/50 border-academic-blue/30 focus:border-academic-purple focus:ring-academic-purple/30 pr-10"
               required
             />
+            {/* Voice toggle button for branch */}
+            <button
+              type="button"
+              onClick={toggleBranchRecording}
+              className="absolute top-2 right-2 p-2 rounded-full bg-academic-blue/20 hover:bg-academic-blue/30 text-white"
+              tabIndex={-1}
+            >
+              {isBranchRecording ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
+            </button>
           </div>
 
           <div className="space-y-2 relative">
