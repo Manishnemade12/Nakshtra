@@ -198,31 +198,7 @@ const StudyResults = ({ content, branch, field, youtubeVideos = [], articles = [
       </div>
 
       {/* Quick Action Cards */}
-      <div className="grid gap-4 md:grid-cols-3 mt-8">
-        <Card className="bg-gradient-to-br from-academic-blue/10 to-academic-blue/5 border-academic-blue/20 hover:shadow-md transition-all duration-300">
-          <CardContent className="p-4 text-center">
-            <Youtube className="h-8 w-8 text-academic-blue mx-auto mb-2" />
-            <h3 className="font-semibold text-foreground mb-1">Video Learning</h3>
-            <p className="text-sm text-muted-foreground">Curated YouTube channels and playlists</p>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-gradient-to-br from-academic-purple/10 to-academic-purple/5 border-academic-purple/20 hover:shadow-md transition-all duration-300">
-          <CardContent className="p-4 text-center">
-            <BookOpen className="h-8 w-8 text-academic-purple mx-auto mb-2" />
-            <h3 className="font-semibold text-foreground mb-1">Online Courses</h3>
-            <p className="text-sm text-muted-foreground">Professional certifications and courses</p>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-gradient-to-br from-academic-light/50 to-academic-lighter/50 border-academic-blue/10 hover:shadow-md transition-all duration-300">
-          <CardContent className="p-4 text-center">
-            <Users className="h-8 w-8 text-academic-blue mx-auto mb-2" />
-            <h3 className="font-semibold text-foreground mb-1">Community</h3>
-            <p className="text-sm text-muted-foreground">Connect with peers and experts</p>
-          </CardContent>
-        </Card>
-      </div>
+     
     </div>
   );
 };
