@@ -24,6 +24,12 @@ import { SidebarProvider } from "./components/ui/sidebar";
 import { AppSidebar } from "./components/layout/AppSidebar";
 import { ThemeToggle } from "./components/layout/ThemeToggle";
 import Games from "./pages/Games";
+import BrainDots from "./pages/BrainDots";
+import Game2048 from "./pages/Game2048";
+import Sudoku from "./pages/Sudoku";
+import UnblockMe from "./pages/UnblockMe";
+import Flashcard from "./pages/fashcard";
+import Courses from "./pages/Courses";
 
 const queryClient = new QueryClient();
 
@@ -53,11 +59,16 @@ const AppContent = ({ user }: { user: User | null }) => {
                 <Route path="/Chatbot" element={user ? <Chatbot /> : <Auth />} />
                 <Route path="/Guidance" element={user ? <Guidance /> : <Auth />} />
                 <Route path="/Roadmap" element={user ? <Roadmap /> : <Auth />} />
-                <Route path="/Summary" element={user ? <Summary /> : <Auth />} />
+                <Route path="/Summary" element={user ? <Flashcard /> : <Auth />} />
                 <Route path="/Contact" element={user ? <Contact /> : <Auth />} />
                 <Route path="/TestGenerator" element={user ? <TestGenerator /> : <Auth />} />
                 <Route path="/Forum" element={user ? <Forum /> : <Auth />} />
                 <Route path="/Games" element={user ? <Games /> : <Auth />} />
+                <Route path="/Games/Game2048" element={user ? <Game2048 /> : <Auth />} />
+                <Route path="/Games/BrainDots" element={user ? <BrainDots /> : <Auth />} />
+                <Route path="/Games/Sudoku" element={user ? <Sudoku /> : <Auth />} />
+                <Route path="/Games/UnblockMe" element={user ? <UnblockMe /> : <Auth />} />
+                <Route path="/courses" element={user ? <Courses /> : <Auth />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>

@@ -84,7 +84,7 @@ const navigationItems = [
     gradient: "from-secondary-purple to-accent-teal"
   },
       { 
-    title: "Summrizer & Flashcards", 
+    title: "Summrizer", 
     url: "/Summary", 
     icon: MessageCircle,
     gradient: "from-secondary-purple to-accent-teal"
@@ -99,6 +99,12 @@ const navigationItems = [
     { 
     title: "Games", 
     url: "/Games", 
+    icon: Zap,
+    gradient: "from-accent-teal to-primary"
+  },
+    { 
+    title: "courses", 
+    url: "/courses", 
     icon: Zap,
     gradient: "from-accent-teal to-primary"
   },

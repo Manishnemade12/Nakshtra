@@ -23,16 +23,55 @@
   <body>
     <!-- Google Translate Dropdown -->
     <style>
+  #google_translate_element {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    padding: 6px 10px;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+  }
 
-   
-      #google_translate_element {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        z-index: 9999;
-        background: transparent;
-      }
-    </style>
+  /* Hover effect */
+  #google_translate_element:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+  }
+
+  /* Dropdown select style */
+  .goog-te-combo {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .goog-te-combo:hover {
+    border-color: #4285f4;
+  }
+
+  /* Hide ugly Google branding text */
+  .goog-logo-link,
+  .goog-te-gadget span {
+    display: none !important;
+  }
+
+  /* Make "Select Language" text cleaner */
+  .goog-te-gadget {
+    font-family: 'Arial', sans-serif !important;
+    font-size: 14px !important;
+    color: #333 !important;
+  }
+</style>
+
     <div id="google_translate_element"></div>
     <div style="height:32px;"></div>
     <div id="root"></div>
