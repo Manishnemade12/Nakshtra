@@ -91,12 +91,6 @@ const navigationItems = [
   },
 
     { 
-    title: "Contact Us", 
-    url: "/contact", 
-    icon: Zap,
-    gradient: "from-accent-teal to-primary"
-  },
-    { 
     title: "Games", 
     url: "/Games", 
     icon: Zap,
@@ -105,7 +99,13 @@ const navigationItems = [
     { 
     title: "courses", 
     url: "/courses", 
-    icon: Zap,
+    icon: BookOpen,
+    gradient: "from-accent-teal to-primary"
+  },
+   { 
+    title: "Contact Us", 
+    url: "/contact", 
+    icon: ScanFace,
     gradient: "from-accent-teal to-primary"
   },
   
